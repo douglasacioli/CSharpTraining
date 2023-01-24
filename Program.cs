@@ -1,7 +1,25 @@
-﻿System.Console.WriteLine("Digite um Numero: ");
-var numero = 1;
+﻿LerArquivo(1);
 
-if (numero >=18)
+void LerArquivo(int numeroArquivo)
 {
-    System.Console.WriteLine("Você digitou um numero maior que 18");
+
+    string caminho =@"C:\Users\Dell\OneDrive\Área de Trabalho\21csharp\21CSharp\teste" + (numeroArquivo) + ".txt";
+    if (File.Exists(caminho))
+    {
+        using (StreamReader arq = File.OpenText(caminho))
+        {
+            string linha;
+            while ((linha = arq.ReadLine()) != null)
+            {
+                System.Console.WriteLine(linha);
+            }
+        }
+    }
+
+    string caminho2 = @"C:\Users\Dell\OneDrive\Área de Trabalho\21csharp\21CSharp\teste" + (numeroArquivo + 1) + ".txt";
+    if (File.Exists(caminho2))
+    {
+        LerArquivo(numeroArquivo + 1);
+    }
+
 }
